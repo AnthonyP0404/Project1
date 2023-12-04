@@ -6,19 +6,21 @@ import Home from "./Home";
 import SellersPage from "./seller/SellersPage";
 import BuyersPage from "./buyer/BuyersPage";
 
-function Navbar() {
+
+function MyNavbar() {
   return (
     <>
       <BrowserRouter>
         <Navbar expand="lg" className="bg-body-tertiary">
           <Container>
-            <Navbar.Brand href="#home">QA</Navbar.Brand>
+            <Navbar.Brand>QA</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 <Nav.Link as={Link} to={'./home'}>Home</Nav.Link>
                 <Nav.Link as={Link} to={'./buyersPage'}>Buyers</Nav.Link>
                 <Nav.Link as={Link} to={'./sellersPage'}>Sellers</Nav.Link>
+                <Nav.Link as={Link} to={'./sellersPage'}>Properties</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -34,4 +36,4 @@ function Navbar() {
     </>
   )
 }
-export default Navbar
+export default MyNavbar

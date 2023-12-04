@@ -10,8 +10,8 @@ Repository for QA project 1
 
 ## Ports
 For the purpose of this project:  
-  the website will run on port:  3000  
-  the database will run on port: 8081
+ - the website will run on port:  3000  
+ - the database will run on port: 8081
 
 ## Launching
 In terminal, go to directory '/Project1/estate-agent' and run:           npx json-server --watch db.json --port 8081

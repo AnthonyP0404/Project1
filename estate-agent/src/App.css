@@ -1,8 +1,7 @@
-
 .App {
   text-align: center;
   background-color: #333333;
-  min-height: 300px ;
+  min-height: 300px;
   width: 100%;
   padding-bottom: 50px;
 }
@@ -29,12 +28,12 @@
   font-size: large;
 }
 
-#nav-item:hover{
+#nav-item:hover {
   background: rgb(255, 255, 255);
   color: blue;
 }
 
-#pageComponent{
+#pageComponent {
   margin: 10px;
 }
 
@@ -72,13 +71,17 @@
   text-align: center;
   padding: 3px;
 }
+
 #allSellers td {
   width: 16%;
   border: solid 1px black;
   word-wrap: break-word;
-  padding-left: 5px;
-  padding-right: 5px;
 }
+
+#allSellers tr:nth-child(even) {
+  background-color: #c4c4c4;
+}
+
 #allSellers input {
   width: 100%;
 }
@@ -134,13 +137,17 @@
   text-align: center;
   padding: 3px;
 }
+
 #allBuyers td {
   width: 16%;
   border: solid 1px black;
   word-wrap: break-word;
-  padding-left: 5px;
-  padding-right: 5px;
 }
+
+#allBuyers tr:nth-child(even) {
+  background-color: #c4c4c4;
+}
+
 #allBuyers input {
   width: 100%;
 }
@@ -157,6 +164,74 @@
   color: white;
 }
 
-#addButton {
+.marginedButton {
+  margin-left: 20px;
+}
+
+
+
+
+
+/* MAIN PROPERTIES PAGE -----------------------*/
+
+#propertiesPage span {
+  margin: 10px;
+  border: solid 1px black;
+  background-color: grey;
+  color: black;
+  padding: 10px;
+}
+
+.linkColour {
+  color: black;
+}
+
+
+
+/* VIEW ALL PROPERTIES TABLE ------------------*/
+#allProperties {
+  width: 98.5%;
+  border: solid 2px black;
+  margin: 10px;
+  align-items: center;
+  table-layout: fixed;
+  background-color: white;
+}
+
+#allProperties th {
+  width: 9%;
+  border: solid 2px black;
+  text-align: center;
+  padding: 3px;
+}
+
+#allProperties td {
+  width: 9%;
+  border: solid 1px black;
+  word-wrap: break-word;
+}
+
+#allProperties tr:nth-child(even) {
+  background-color: #c4c4c4;
+}
+
+#allProperties input {
+  width: 100%;
+  height: fit-content;
+}
+
+
+
+/* SUBMIT PROPERTIES ------------------------------*/
+#submitPropertyForm {
+  width: 97.25%;
+  border: dashed 1px white;
+  padding: 20px;
+  margin: 20px;
+  text-align: left;
+  color: white;
+}
+
+.marginedButton {
   margin-left: 20px;
 }

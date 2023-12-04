@@ -2,16 +2,19 @@ import React from "react";
 import { Container, Navbar, Nav, Button } from 'react-bootstrap'
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
-import Home from "./Home";
-
-import SellersPage from "./seller/SellersPage";
-import AddSeller from "./seller/AddSeller";
-
-import BuyersPage from "./buyer/BuyersPage";
-import AddBuyer from "./buyer/AddBuyer";
-
 import QAlogo from './../img/QA-logo.png'
 
+import Home from "./Home";
+
+import SellersPage from "./sellers/SellersPage";
+import AddSeller from "./sellers/AddSeller";
+
+import BuyersPage from "./buyers/BuyersPage";
+import AddBuyer from "./buyers/AddBuyer";
+
+import PropertiesPage from "./properties/PropertiesPage";
+import SubmitProperty from "./properties/SubmitProperty";
+import FilterProperties from "./properties/FilterProperties";
 
 
 function MyNavbar() {
@@ -24,10 +27,10 @@ function MyNavbar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link as={Link} to={'/'}>        <span id="nav-item"> <b>Home       </b> </span> </Nav.Link>
-                <Nav.Link as={Link} to={'./buyersPage'}>  <span id="nav-item"> <b>Buyers     </b> </span></Nav.Link>
-                <Nav.Link as={Link} to={'./sellersPage'}> <span id="nav-item"> <b>Sellers    </b> </span></Nav.Link>
-                <Nav.Link as={Link} to={'./sellersPage'}> <span id="nav-item"> <b>Properties </b> </span></Nav.Link>
+                <Nav.Link as={Link} to={'/'}>                <span id="nav-item"> <b>Home       </b> </span></Nav.Link>
+                <Nav.Link as={Link} to={'./buyersPage'}>     <span id="nav-item"> <b>Buyers     </b> </span></Nav.Link>
+                <Nav.Link as={Link} to={'./sellersPage'}>    <span id="nav-item"> <b>Sellers    </b> </span></Nav.Link>
+                <Nav.Link as={Link} to={'./propertiesPage'}> <span id="nav-item"> <b>Properties </b> </span></Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -37,11 +40,15 @@ function MyNavbar() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/buyersPage" element={<BuyersPage />} />
-          <Route path="/buyersPage/addBuyer" element={<AddBuyer />} />
+          <Route path="/buyersPage"                      element={<BuyersPage />} />
+          <Route path="/buyersPage/addBuyer"             element={<AddBuyer />} />
 
-          <Route path="/sellersPage" element={<SellersPage />} />
-          <Route path="/sellersPage/addSeller" element={<AddSeller />} />
+          <Route path="/sellersPage"                     element={<SellersPage />} />
+          <Route path="/sellersPage/addSeller"           element={<AddSeller />} />
+
+          <Route path="/propertiesPage"                  element={<PropertiesPage />} />
+          <Route path="/propertiesPage/submitProperty"   element={<SubmitProperty />} />
+          <Route path="/propertiesPage/filterProperties" element={<FilterProperties />} /> 
 
         </Routes>
       </BrowserRouter>

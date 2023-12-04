@@ -119,6 +119,14 @@
       "address": "15 Main Street, Cardiff",
       "postcode": "CF1 1AN",
       "phone": "01234567813"
+    },
+    {
+      "firstName": "asdasdasd",
+      "surname": "asdasdadasdasdasd",
+      "address": "asdasdasdasda",
+      "postcode": "asdasdasdasdasd",
+      "phone": "asdasdasdasdasdasd",
+      "id": 16
     }
   ],
   "property": [
@@ -280,7 +288,9 @@
       "price": 120000,
       "bedroom": 2,
       "bathroom": 1,
-      "garden": 0
+      "garden": 0,
+      "sellerId": 13,
+      "status": "FOR SALE"
     }
   ],
   "buyer": [
@@ -403,14 +413,6 @@
       "address": "9 Whisker Way, Oxford",
       "postcode": "OX1 1PA",
       "phone": "01234567814"
-    },
-    {
-      "firstName": "fgjrtdfgd",
-      "surname": "sdfsdfse",
-      "address": "dfgdfgdfg",
-      "postcode": "gfdwsdfgj",
-      "phone": "dfgdfgdfgdfg",
-      "id": 16
     }
   ],
   "booking": [

@@ -43,7 +43,7 @@ function ViewAllBuyers() {
                 <table id="allBuyers">
                     <thead>
                         <tr>
-                            <th> ID </th>
+                            <th> Buyer ID </th>
                             <th> First Name </th>
                             <th> Surname </th>
                             <th> Phone # </th>
@@ -62,7 +62,10 @@ function ViewAllBuyers() {
                                     <td> {buyer.phone}     </td>
                                     <td> {buyer.address}   </td>
                                     <td> {buyer.postcode}  </td>
-                                    <td> <input type="button" value="Delete" onClick={() => deleteRow(buyer.id)} /> </td>
+                                    <td style={{ backgroundColor: 'white' }}>
+                                        <input type="button" value="Delete" onClick={() => deleteRow(buyer.id)} />
+                                        {/* potentially add edit button here as well */}
+                                    </td>
                                 </tr>
                             )
                         }

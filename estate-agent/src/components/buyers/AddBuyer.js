@@ -49,13 +49,14 @@ function AddBuyer() {
             <p style={{ color: 'white' }}> Below is a list of all the buyers. </p>
             <div id="addBuyerForm">
                 <h2> Enter Buyer Information </h2> <br />
-                <span> First Name: <input type="text" id="fname" /> </span>
+                <span> First Name: <input type="text" id="fname" /> </span>&nbsp;&nbsp;&nbsp;
                 <span> Surname: <input type="text" id="sname" /> </span> <br /><br />
                 <span> Phone: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="phone" /> </span> <br /><br />
-                <span> Address: &nbsp;&nbsp;&nbsp; <input type="text" id="addr" /> </span>
+                <span> Address: &nbsp;&nbsp;&nbsp; <input type="text" id="addr" /> </span>&nbsp;&nbsp;&nbsp;
                 <span> Postcode: <input type="text" id="pcode" /> </span> <br /><br />
 
-                <input type="button" id="addButton" value="Add" onClick={() => fieldCheck()} />
+                <input type="button" className="marginedButton" value="Add" onClick={() => fieldCheck()} />
+                <input type="button" className="marginedButton" value="Cancel" onClick={() => navigate("/buyersPage")} />
 
             </div>
 

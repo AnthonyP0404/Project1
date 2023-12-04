@@ -5,7 +5,7 @@ function BuyersPage() {
     return (
         <div id="pageComponent">
             <div id="buyersPage">
-                <h1 id="pageHeading"> <b>Buyers Page</b> </h1>
+                <h1 id="pageHeading"> <b>Buyers List</b> </h1>
                 <p style={{ color: 'white' }}> Below is a list of all the buyers. </p>
 
                 <span style={{ float: 'left', marginLeft: '20px' }}><Link className="linkColour" to={"./addBuyer"}>Add buyer</Link> </span>

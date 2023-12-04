@@ -17,7 +17,7 @@ function AddSeller() {
     }
 
     function saveData() {
-        let seller = {
+        let buyer = {
             "firstName": document.getElementById("fname").value,
             "surname": document.getElementById("sname").value,
             "address": document.getElementById("addr").value,
@@ -28,7 +28,7 @@ function AddSeller() {
         let ref = fetch("http://localhost:8081/seller", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(seller)
+            body: JSON.stringify(buyer)
         })
         ref.then((x) => {
             alert("Seller added successfully.")
@@ -45,17 +45,18 @@ function AddSeller() {
 
     return (
         <div id="pageComponent">
-            <h1 id="pageHeading"> <b>Sellers Page</b> </h1>
+            <h1 id="pageHeading"> <b>Seller Page</b> </h1>
             <p style={{ color: 'white' }}> Below is a list of all the sellers. </p>
             <div id="addSellerForm">
                 <h2> Enter Seller Information </h2> <br />
-                <span> First Name: <input type="text" id="fname" /> </span>
+                <span> First Name: <input type="text" id="fname" /> </span>&nbsp;&nbsp;&nbsp;
                 <span> Surname: <input type="text" id="sname" /> </span> <br /><br />
                 <span> Phone: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="phone" /> </span> <br /><br />
-                <span> Address: &nbsp;&nbsp;&nbsp; <input type="text" id="addr" /> </span>
+                <span> Address: &nbsp;&nbsp;&nbsp; <input type="text" id="addr" /> </span>&nbsp;&nbsp;&nbsp;
                 <span> Postcode: <input type="text" id="pcode" /> </span> <br /><br />
 
-                <input type="button" id="addButton" value="Add" onClick={() => fieldCheck()} />
+                <input type="button" className="marginedButton" value="Add" onClick={() => fieldCheck()} />
+                <input type="button" className="marginedButton" value="Cancel" onClick={() => navigate("/sellersPage")} />
 
             </div>
 

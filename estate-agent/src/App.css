@@ -98,3 +98,65 @@
 #addButton {
   margin-left: 20px;
 }
+
+
+
+
+/* MAIN BUYERS PAGE -----------------------*/
+
+#buyersPage span {
+  margin: 10px;
+  border: solid 1px black;
+  background-color: grey;
+  color: black;
+  padding: 10px;
+}
+
+.linkColour {
+  color: black;
+}
+
+
+
+/* VIEW ALL BUYERS TABLE ------------------*/
+#allBuyers {
+  width: 98.5%;
+  border: solid 2px black;
+  margin: 10px;
+  align-items: center;
+  table-layout: fixed;
+  background-color: white;
+}
+
+#allBuyers th {
+  width: 16%;
+  border: solid 2px black;
+  text-align: center;
+  padding: 3px;
+}
+#allBuyers td {
+  width: 16%;
+  border: solid 1px black;
+  word-wrap: break-word;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#allBuyers input {
+  width: 100%;
+}
+
+
+
+/* ADD BUYER ------------------------------*/
+#addBuyerForm {
+  width: 97.25%;
+  border: dashed 1px white;
+  padding: 20px;
+  margin: 20px;
+  text-align: left;
+  color: white;
+}
+
+#addButton {
+  margin-left: 20px;
+}

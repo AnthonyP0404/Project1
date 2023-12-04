@@ -1,8 +1,8 @@
-import ViewAllSellers from "./ViewAllSellers";
+import ViewAllBuyers from "./ViewAllBuyers";
 import { useNavigate } from "react-router-dom";
 
 
-function AddSeller() {
+function AddBuyer() {
     let navigate = useNavigate()
 
     function fieldCheck() {
@@ -17,7 +17,7 @@ function AddSeller() {
     }
 
     function saveData() {
-        let seller = {
+        let buyer = {
             "firstName": document.getElementById("fname").value,
             "surname": document.getElementById("sname").value,
             "address": document.getElementById("addr").value,
@@ -25,19 +25,19 @@ function AddSeller() {
             "phone": document.getElementById("phone").value
         }
 
-        let ref = fetch("http://localhost:8081/seller", {
+        let ref = fetch("http://localhost:8081/buyer", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(seller)
+            body: JSON.stringify(buyer)
         })
         ref.then((x) => {
-            alert("Seller added successfully.")
+            alert("Buyer added successfully.")
             document.getElementById("fname").value = ""
             document.getElementById("sname").value = ""
             document.getElementById("addr").value = ""
             document.getElementById("pcode").value = ""
             document.getElementById("phone").value = ""
-            navigate("/sellersPage")
+            navigate("/buyersPage")
         }
         )
     }
@@ -45,10 +45,10 @@ function AddSeller() {
 
     return (
         <div id="pageComponent">
-            <h1 id="pageHeading"> <b>Sellers Page</b> </h1>
-            <p style={{ color: 'white' }}> Below is a list of all the sellers. </p>
-            <div id="addSellerForm">
-                <h2> Enter Seller Information </h2> <br />
+            <h1 id="pageHeading"> <b>Buyers Page</b> </h1>
+            <p style={{ color: 'white' }}> Below is a list of all the buyers. </p>
+            <div id="addBuyerForm">
+                <h2> Enter Buyer Information </h2> <br />
                 <span> First Name: <input type="text" id="fname" /> </span>
                 <span> Surname: <input type="text" id="sname" /> </span> <br /><br />
                 <span> Phone: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="phone" /> </span> <br /><br />
@@ -61,8 +61,8 @@ function AddSeller() {
 
             <br />
 
-            <ViewAllSellers />
+            <ViewAllBuyers />
         </div>
     )
 }
-export default AddSeller;
+export default AddBuyer;

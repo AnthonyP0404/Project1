@@ -8,6 +8,7 @@ import SellersPage from "./seller/SellersPage";
 import AddSeller from "./seller/AddSeller";
 
 import BuyersPage from "./buyer/BuyersPage";
+import AddBuyer from "./buyer/AddBuyer";
 
 import QAlogo from './../img/QA-logo.png'
 
@@ -36,10 +37,12 @@ function MyNavbar() {
         <Routes>
           <Route path="/" element={<Home />} />
 
+          <Route path="/buyersPage" element={<BuyersPage />} />
+          <Route path="/buyersPage/addBuyer" element={<AddBuyer />} />
+
           <Route path="/sellersPage" element={<SellersPage />} />
           <Route path="/sellersPage/addSeller" element={<AddSeller />} />
 
-          <Route path="/buyersPage" element={<BuyersPage />} />
         </Routes>
       </BrowserRouter>
     </>

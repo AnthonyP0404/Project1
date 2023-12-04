@@ -3,8 +3,14 @@ import { Container, Navbar, Nav, Button } from 'react-bootstrap'
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 import Home from "./Home";
+
 import SellersPage from "./seller/SellersPage";
+import AddSeller from "./seller/AddSeller";
+
 import BuyersPage from "./buyer/BuyersPage";
+
+import QAlogo from './../img/QA-logo.png'
+
 
 
 function MyNavbar() {
@@ -13,14 +19,14 @@ function MyNavbar() {
       <BrowserRouter>
         <Navbar expand="lg" className="bg-body-tertiary">
           <Container>
-            <Navbar.Brand>QA</Navbar.Brand>
+            <Navbar.Brand><img id="QAlogo" src={QAlogo} alt="QA" /> <i style={{ fontSize: '15px' }}>Estate Agent</i> </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link as={Link} to={'./home'}>Home</Nav.Link>
-                <Nav.Link as={Link} to={'./buyersPage'}>Buyers</Nav.Link>
-                <Nav.Link as={Link} to={'./sellersPage'}>Sellers</Nav.Link>
-                <Nav.Link as={Link} to={'./sellersPage'}>Properties</Nav.Link>
+                <Nav.Link as={Link} to={'/'}>        <span id="nav-item"> <b>Home       </b> </span> </Nav.Link>
+                <Nav.Link as={Link} to={'./buyersPage'}>  <span id="nav-item"> <b>Buyers     </b> </span></Nav.Link>
+                <Nav.Link as={Link} to={'./sellersPage'}> <span id="nav-item"> <b>Sellers    </b> </span></Nav.Link>
+                <Nav.Link as={Link} to={'./sellersPage'}> <span id="nav-item"> <b>Properties </b> </span></Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -28,8 +34,11 @@ function MyNavbar() {
 
 
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+
           <Route path="/sellersPage" element={<SellersPage />} />
+          <Route path="/sellersPage/addSeller" element={<AddSeller />} />
+
           <Route path="/buyersPage" element={<BuyersPage />} />
         </Routes>
       </BrowserRouter>

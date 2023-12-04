@@ -9,8 +9,8 @@ Repository for QA project 1
 
 
 ## Ports
-For the purpose of this project:
-  the website will run on port:  3000
+For the purpose of this project:  
+  the website will run on port:  3000  
   the database will run on port: 8081
 
 ## Launching

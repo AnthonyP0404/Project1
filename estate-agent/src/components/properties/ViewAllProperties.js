@@ -18,7 +18,7 @@ function ViewAllProperties() {
     useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching
 
 
-    let withdrawnProperties = []
+    // let withdrawnProperties = []
     function withdrawProperty(propertyID) {
         let choice = window.confirm("Do you want to withdraw this property?")
         if (choice) {

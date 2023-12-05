@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Navbar, Nav, Button } from 'react-bootstrap'
+import { Container, Navbar, Nav } from 'react-bootstrap'
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 import QAlogo from './../img/QA-logo.png'
@@ -13,6 +13,7 @@ import BuyersPage from "./buyers/BuyersPage";
 import AddBuyer from "./buyers/AddBuyer";
 
 import PropertiesPage from "./properties/PropertiesPage";
+import BuyProperty from "./properties/BuyProperty";
 import SubmitProperty from "./properties/SubmitProperty";
 import FilterProperties from "./properties/FilterProperties";
 
@@ -47,6 +48,7 @@ function MyNavbar() {
           <Route path="/sellersPage/addSeller"           element={<AddSeller />} />
 
           <Route path="/propertiesPage"                  element={<PropertiesPage />} />
+          <Route path="/propertiesPage/buyProperty"      element={<BuyProperty />} />
           <Route path="/propertiesPage/submitProperty"   element={<SubmitProperty />} />
           <Route path="/propertiesPage/filterProperties" element={<FilterProperties />} /> 
 

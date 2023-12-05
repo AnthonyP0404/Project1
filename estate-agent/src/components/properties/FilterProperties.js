@@ -147,7 +147,7 @@ function FilterProperties() {
         <div id="pageComponent">
 
             <h1 id="pageHeading"> <b>Property List</b> </h1>
-            <p id="description" style={{ color: 'white', visibility: 'hidden' }}> Below is a list of all the properties that match the filters. </p>
+            <p id="description" style={{ color: 'white', visibility: 'hidden' }}> Below is a list of all the properties that match the filters. (please return to 'Properties' if you wish to withdraw a property) </p>
 
             <div id="filterPropertiesForm">
                 <h2> Enter Property Filters </h2> <br />

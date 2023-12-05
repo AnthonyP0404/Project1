@@ -55,7 +55,7 @@ function SubmitProperty() {
 
     return (
         <div id="pageComponent">
-            <h1 id="pageHeading"> <b>Properties Page</b> </h1>
+            <h1 id="pageHeading"> <b>Property List</b> </h1>
             <p style={{ color: 'white' }}> Below is a list of all the properties. </p>
             <div id="submitPropertyForm">
                 <h2> Enter Property Information </h2> <br />

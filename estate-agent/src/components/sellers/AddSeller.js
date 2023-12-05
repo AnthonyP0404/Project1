@@ -45,7 +45,7 @@ function AddSeller() {
 
     return (
         <div id="pageComponent">
-            <h1 id="pageHeading"> <b>Seller Page</b> </h1>
+            <h1 id="pageHeading"> <b>Sellers List</b> </h1>
             <p style={{ color: 'white' }}> Below is a list of all the sellers. </p>
             <div id="addSellerForm">
                 <h2> Enter Seller Information </h2> <br />

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from 'react-router-dom'
 
 function ViewAllProperties() {
-    let navigate = useNavigate()
 
     let [properties, addProperties] = useState([])
 
@@ -10,23 +8,22 @@ function ViewAllProperties() {
         let url = "http://localhost:8081/property"
         fetch(url).then(processResponse)
     }
-
-
     function processResponse(response) {
         let res = response.json()
         res.then(processRecords)
     }
-
     function processRecords(records) {
         addProperties(records)
     }
-
     useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching
 
+
+    let withdrawnProperties = []
     function withdrawProperty(propertyID) {
         let choice = window.confirm("Do you want to withdraw this property?")
         if (choice) {
             let url = "http://localhost:8081/property/" + propertyID
+            //store it into withdrawnProperties then run the below
             let ref = fetch(url, { method: "Delete" })
             ref.then(() => {
                 alert("Property of id " + propertyID + " has been withdrawn.")

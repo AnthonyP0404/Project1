@@ -76,6 +76,8 @@
   width: 16%;
   border: solid 1px black;
   word-wrap: break-word;
+  padding: 3px;
+
 }
 
 #allSellers tr:nth-child(even) {
@@ -142,6 +144,7 @@
   width: 16%;
   border: solid 1px black;
   word-wrap: break-word;
+  padding: 3px;
 }
 
 #allBuyers tr:nth-child(even) {
@@ -209,15 +212,16 @@
   width: 9%;
   border: solid 1px black;
   word-wrap: break-word;
+  padding: 3px;
 }
 
-#allProperties tr:nth-child(even) {
+#allProperties tr:nth-child(even)  {
   background-color: #c4c4c4;
 }
 
 #allProperties input {
   width: 100%;
-  height: fit-content;
+  padding: 10px;
 }
 
 
@@ -234,4 +238,61 @@
 
 .marginedButton {
   margin-left: 20px;
+}
+
+
+
+/* FILTER PROPERTIES ------------------------------*/
+#filterPropertiesForm {
+  width: 97.25%;
+  border: dashed 1px white;
+  padding: 20px;
+  margin: 20px;
+  color: white;
+}
+
+#filterPropertiesForm .filterDropdowns {
+  padding: 10px;
+  margin: 10px;
+  width: 340px;
+  text-align: center;
+}
+
+#filterPropertiesForm .numberInputs {
+  width: 35px;
+  text-align: center;
+}
+
+/* FILTERED TABLE */
+#filteredPropertiesTable {
+  width: 98.5%;
+  border: solid 2px black;
+  margin: 10px;
+  align-items: center;
+  table-layout: fixed;
+  background-color: white;
+}
+
+#filteredPropertiesTable th {
+  width: 10%;
+  border: solid 2px black;
+  text-align: center;
+  padding: 3px;
+}
+
+#filteredPropertiesTable td {
+  width: 10%;
+  border: solid 1px black;
+  word-wrap: break-word;
+  padding: 3px;
+}
+
+#filteredPropertiesTable tr:nth-child(even) {
+  background-color: #c4c4c4;
+}
+
+#filteredPropertiesTable input {
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }

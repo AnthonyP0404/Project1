@@ -13,14 +13,14 @@ import BuyersPage from "./buyers/BuyersPage";
 import RegisterBuyer from "./buyers/RegisterBuyer";
 
 import PropertiesPage from "./properties/PropertiesPage";
-import BuyProperty from "./properties/BuyProperty";
 import SubmitProperty from "./properties/SubmitProperty";
 import FilterProperties from "./properties/FilterProperties";
+import ViewProperty from "./properties/ViewProperty";
 
 
 function MyNavbar() {
   return (
-    <>
+    <div id="navbar">
       <BrowserRouter>
         <Navbar expand="lg" className="bg-body-tertiary">
           <Container>
@@ -42,19 +42,19 @@ function MyNavbar() {
           <Route path="/" element={<Home />} />
 
           <Route path="/buyersPage"                      element={<BuyersPage />} />
-          <Route path="/buyersPage/registerBuyer"             element={<RegisterBuyer />} />
+          <Route path="/buyersPage/registerBuyer"        element={<RegisterBuyer />} />
 
           <Route path="/sellersPage"                     element={<SellersPage />} />
-          <Route path="/sellersPage/registerSeller"           element={<RegisterSeller />} />
+          <Route path="/sellersPage/registerSeller"      element={<RegisterSeller />} />
 
           <Route path="/propertiesPage"                  element={<PropertiesPage />} />
-          <Route path="/propertiesPage/buyProperty"      element={<BuyProperty />} />
           <Route path="/propertiesPage/submitProperty"   element={<SubmitProperty />} />
           <Route path="/propertiesPage/filterProperties" element={<FilterProperties />} /> 
+          <Route path="/propertiesPage/viewProperty"     element={<ViewProperty />} /> 
 
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 export default MyNavbar

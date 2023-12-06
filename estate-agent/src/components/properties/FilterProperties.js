@@ -19,6 +19,7 @@ function FilterProperties() {
         document.getElementById("pStatus").selectedIndex = 0
         document.getElementById("pBedrooms").value = null
         document.getElementById("pBathrooms").value = null
+        document.getElementById("pGardens").value = null
         document.getElementById("description").style.visibility = "hidden"
         document.getElementById("filteredPropertiesTableBody").innerHTML = ""
         document.getElementById("dataTable").style.visibility = "hidden"
@@ -61,7 +62,7 @@ function FilterProperties() {
                 let tdSellerId = document.createElement("td")
                 let tdStatus = document.createElement("td")
                 let tdBuyerId = document.createElement("td")
-                // let tdWithdraw = document.createElement("input")
+                let tdView = document.createElement("input")
 
                 tdID.innerHTML = properties[i].id
                 tdAddress.innerHTML = properties[i].address
@@ -76,24 +77,13 @@ function FilterProperties() {
                 tdBuyerId.innerHTML = properties[i].buyerId
                 if (properties[i].buyerId == null) tdBuyerId.innerHTML = ""
 
-                // tdWithdraw.value = "Withdraw"
-                // tdWithdraw.type = "button"
-                // tdWithdraw.style.width = "100%"
-                // tdWithdraw.style.height = "100%"
-                // tdWithdraw.style.alignContent = "center"
-                // tdWithdraw.onclick = function () {
-                //     let choice = window.confirm("Do you want to withdraw this property?")
-                //     if (choice) {
-                //         let url = "http://localhost:8081/property/" + properties[i].id
-                //         //store it into withdrawnProperties then run the below
-                //         let ref = fetch(url, { method: "Delete" })
-                //         ref.then(() => {
-                //             alert("Property of id " + properties[i].id + " has been withdrawn.")
-                //             // window.location.reload(false);   //this would reset the filters and all, but without it the filtered table wont update
-                //         })
-
-                //     }
-                // }
+                tdView.value = "View"
+                tdView.type = "button"
+                tdView.style.width = "100%"
+                tdView.style.padding = "13px"
+                tdView.style.alignContent = "center"
+                let property = properties[i]
+                tdView.onclick = function () { navigate('/propertiesPage/viewProperty', { state: { property } }) }
 
                 tr.appendChild(tdID)
                 tr.appendChild(tdAddress)
@@ -106,12 +96,13 @@ function FilterProperties() {
                 tr.appendChild(tdSellerId)
                 tr.appendChild(tdStatus)
                 tr.appendChild(tdBuyerId)
-                // tr.appendChild(tdWithdraw)
+                tr.appendChild(tdView)
 
                 document.getElementById("filteredPropertiesTableBody").appendChild(tr)
             }
         }
     }
+
 
     //check if property matches the filters
     function checkMatch(property) {
@@ -133,8 +124,10 @@ function FilterProperties() {
                     if (document.getElementById("pBedrooms").value == "" || parseInt(document.getElementById("pBedrooms").value) == property.bedroom) {
                         //check if number of bathrooms match if set
                         if (document.getElementById("pBathrooms").value == "" || parseInt(document.getElementById("pBathrooms").value) == property.bathroom) {
-                            return true
-                            //could add check for garden tickbox
+                            //check if number of gardens match if set
+                            if (document.getElementById("pGardens").value == "" || parseInt(document.getElementById("pGardens").value) == property.garden) {
+                                return true
+                            }
                         } else return false
                     } else return false
                 } else return false
@@ -143,11 +136,13 @@ function FilterProperties() {
         } else return false
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     return (
         <div id="pageComponent">
 
             <h1 id="pageHeading"> <b>Property List</b> </h1>
-            <p id="description" style={{ color: 'white', visibility: 'hidden' }}> Below is a list of all the properties that match the filters. (please return to 'Properties' if you wish to withdraw a property) </p>
+            <p id="description" style={{ color: 'white', visibility: 'hidden' }}> Below is a list of all the properties that match the filters.</p>
 
             <div id="filterPropertiesForm">
                 <h2> Enter Property Filters </h2> <br />
@@ -173,6 +168,7 @@ function FilterProperties() {
                     <option> --- Filter by status --- </option>
                     <option> FOR SALE </option>
                     <option> SOLD </option>
+                    <option> WITHDRAWN </option>
                 </select>
 
                 <br /><br />
@@ -188,6 +184,13 @@ function FilterProperties() {
                 <button className="numberInputs" onClick={() => dec("pBathrooms")}>-</button>
                 <input type="text" id="pBathrooms" className="numberInputs" />
                 <button className="numberInputs" onClick={() => inc("pBathrooms")}>+</button>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <label for="pGardens">Gardens: &nbsp; </label>
+                <button className="numberInputs" onClick={() => dec("pGardens")}>-</button>
+                <input type="text" id="pGardens" className="numberInputs" />
+                <button className="numberInputs" onClick={() => inc("pGardens")}>+</button>
 
                 <br /><br /><br />
 
@@ -215,7 +218,7 @@ function FilterProperties() {
                                 <th> Seller ID   </th>
                                 <th> Status      </th>
                                 <th> Buyer ID    </th>
-                                {/* <th></th> */}
+                                <th></th>
                             </tr>
                         </thead>
 

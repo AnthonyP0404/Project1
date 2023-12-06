@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function ViewAllProperties() {
+    let navigate = useNavigate()
 
     let [properties, addProperties] = useState([])
 
@@ -17,21 +19,7 @@ function ViewAllProperties() {
     }
     useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching
 
-
-    // let withdrawnProperties = []
-    function withdrawProperty(propertyID) {
-        let choice = window.confirm("Do you want to withdraw this property?")
-        if (choice) {
-            let url = "http://localhost:8081/property/" + propertyID
-            //store it into withdrawnProperties then run the below
-            let ref = fetch(url, { method: "Delete" })
-            ref.then(() => {
-                alert("Property of id " + propertyID + " has been withdrawn.")
-                window.location.reload(false);
-            })
-
-        }
-    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
         <div id="pageComponent">
@@ -58,21 +46,21 @@ function ViewAllProperties() {
                         {
                             properties.map((property) =>
                                 <tr>
-                                    <td> {property.id}        </td>
-                                    <td> {property.address}   </td>
-                                    <td> {property.postcode}  </td>
-                                    <td> {property.type}      </td>
-                                    <td> {property.price}     </td>
-                                    <td> {property.bedroom}   </td>
-                                    <td> {property.bathroom}  </td>
-                                    <td> {property.garden}    </td>
-                                    <td> {property.sellerId}  </td>
-                                    <td> {property.status}    </td>
-                                    <td> {property.buyerId}   </td>
+                                    <td> {property.id}         </td>
+                                    <td> {property.address}    </td>
+                                    <td> {property.postcode}   </td>
+                                    <td> {property.type}       </td>
+                                    <td> {property.price}      </td>
+                                    <td> {property.bedroom}    </td>
+                                    <td> {property.bathroom}   </td>
+                                    <td> {property.garden}     </td>
+                                    <td> {property.sellerId}   </td>
+                                    <td> {property.status}     </td>
+                                    <td> {property.buyerId}    </td>
                                     <td style={{ backgroundColor: 'white' }}>
-                                        {/* potentially add edit button here too */}
-                                        <input type="button" value="Withdraw" onClick={() => withdrawProperty(property.id)} />
+                                        <input type='button' value='View' onClick={() => navigate('/propertiesPage/viewProperty', {state: {property}})} />
                                     </td>
+
                                 </tr>
                             )
                         }

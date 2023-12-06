@@ -20,9 +20,7 @@ For the purpose of this project:
 ---
 
 ### Points of improvement / refactoring:
-- made 'Filtering through the Property Page' a new page instead of a component of the initial page so cannot 'Withdraw Property' from it :(
-    - instead you have to go back to 'Properties' in order to withdraw
-    - *Temporary solution*: page description warns about this
+- view button in 'Filtering Page' doesn't like the 'height' css, so it's just padded to fit the grid instead of being functional
 
 - scroll bar moves everything to the left when it does appear.
     - would rather it always be there so components don't move when navigating between pages

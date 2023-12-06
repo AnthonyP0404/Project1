@@ -1,28 +1,9 @@
-.App {
-  text-align: center;
-  background-color: #333333;
-  min-height: 300px;
-  width: 100%;
-  padding-bottom: 50px;
-}
-
-#QAlogo {
-  height: 55px;
-}
-
-#pageHeading {
-  padding: 30px;
-  color: white;
-}
-
-::placeholder {
-  color: red;
-  text-align: center;
-}
-
-
-
 /* NAVBAR ---------------------------------*/
+/* #navbar {          everything is build off the navbar so can't perma-lock it to top of screen
+  position: fixed;  
+  top: 0;
+} */
+
 #nav-item {
   padding: 10px;
   font-size: large;
@@ -33,14 +14,53 @@
   color: blue;
 }
 
-#pageComponent {
-  margin: 10px;
+
+#QAlogo {
+  height: 55px;
 }
 
 
 
-/* MAIN SELLERS PAGE -----------------------*/
+/* PAGE BODY / global ------------------------------*/
+.App {
+  text-align: center;
+  background-color: #333333;
+  min-height: 100vh;
+  width: 100%;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+}
 
+
+#pageHeading {
+  padding: 30px;
+  color: white;
+}
+
+#pageComponent {
+  margin: 10px;
+}
+
+::placeholder {
+  color: red;
+  text-align: center;
+}
+
+
+
+/* FOOTER ----------------------------------*/
+/* .myfooter {
+  margin-top: auto;
+  padding: 30px;
+  background: white;
+  text-align: left;
+
+} */
+
+
+
+/* MAIN SELLERS PAGE -----------------------*/
 #sellersPage span {
   margin: 10px;
   border: solid 1px black;
@@ -280,14 +300,14 @@
 }
 
 #filteredPropertiesTable th {
-  width: 10%;
+  width: 9%;
   border: solid 2px black;
   text-align: center;
   padding: 3px;
 }
 
 #filteredPropertiesTable td {
-  width: 10%;
+  width: 9%;
   border: solid 1px black;
   word-wrap: break-word;
   padding: 3px;
@@ -301,4 +321,34 @@
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+
+
+/* VIEW PROPERTY ---------------------------------------*/
+#viewPropertyPage {
+  align-items: center;
+  width: 100%;
+}
+
+#viewPropertyTable {
+  width: 97%;
+  margin: 20px;
+  align-items: center;
+  color: white;
+  border: solid 3px white;
+}
+#viewPropertyTable td {
+  border: dotted 2px white;
+  border-right: solid 3px white;
+  padding: 10px;
+}
+
+#viewPropertyFunctionality {
+  align-items: center;
+}
+#viewPropertyFunctionality input{
+  align-items: center;
+  padding: 15px;
+  width: 250px;
 }

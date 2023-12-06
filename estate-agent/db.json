@@ -227,18 +227,6 @@
       "buyerId": 6
     },
     {
-      "id": 8,
-      "address": "29 Cedar Street, Cedartown",
-      "postcode": "CT1 1CT",
-      "type": "DETACHED",
-      "price": 200000,
-      "bedroom": 5,
-      "bathroom": 3,
-      "garden": 1,
-      "sellerId": 8,
-      "status": "FOR SALE"
-    },
-    {
       "id": 9,
       "address": "12 Willow Street, Willowvale",
       "postcode": "WV1 1WV",
@@ -286,18 +274,6 @@
       "bathroom": 2,
       "garden": 1,
       "sellerId": 12,
-      "status": "FOR SALE"
-    },
-    {
-      "id": 13,
-      "address": "8 Rose Street, Roseville",
-      "postcode": "RV1 2RV",
-      "type": "APARTMENT",
-      "price": 120000,
-      "bedroom": 2,
-      "bathroom": 1,
-      "garden": 0,
-      "sellerId": 13,
       "status": "FOR SALE"
     }
   ],

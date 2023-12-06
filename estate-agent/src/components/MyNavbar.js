@@ -7,10 +7,10 @@ import QAlogo from './../img/QA-logo.png'
 import Home from "./Home";
 
 import SellersPage from "./sellers/SellersPage";
-import AddSeller from "./sellers/AddSeller";
+import RegisterSeller from "./sellers/RegisterSeller";
 
 import BuyersPage from "./buyers/BuyersPage";
-import AddBuyer from "./buyers/AddBuyer";
+import RegisterBuyer from "./buyers/RegisterBuyer";
 
 import PropertiesPage from "./properties/PropertiesPage";
 import BuyProperty from "./properties/BuyProperty";
@@ -42,10 +42,10 @@ function MyNavbar() {
           <Route path="/" element={<Home />} />
 
           <Route path="/buyersPage"                      element={<BuyersPage />} />
-          <Route path="/buyersPage/addBuyer"             element={<AddBuyer />} />
+          <Route path="/buyersPage/registerBuyer"             element={<RegisterBuyer />} />
 
           <Route path="/sellersPage"                     element={<SellersPage />} />
-          <Route path="/sellersPage/addSeller"           element={<AddSeller />} />
+          <Route path="/sellersPage/registerSeller"           element={<RegisterSeller />} />
 
           <Route path="/propertiesPage"                  element={<PropertiesPage />} />
           <Route path="/propertiesPage/buyProperty"      element={<BuyProperty />} />

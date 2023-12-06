@@ -8,7 +8,7 @@ function SellersPage() {
                 <h1 id="pageHeading"> <b>Sellers List</b> </h1>
                 <p style={{ color: 'white' }}> Below is a list of all the sellers. </p>
 
-                <span style={{ float: 'left', marginLeft: '20px' }}><Link className="linkColour" to={"./addSeller"}>Add seller</Link> </span>
+                <span style={{ float: 'left', marginLeft: '20px' }}><Link className="linkColour" to={"./registerSeller"}>Register seller</Link> </span>
                 <ViewAllSellers />
 
             </div>

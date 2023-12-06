@@ -275,6 +275,18 @@
       "garden": 1,
       "sellerId": 12,
       "status": "FOR SALE"
+    },
+    {
+      "address": "2342342",
+      "postcode": "234234243",
+      "type": "234234234",
+      "price": "234232342",
+      "bedroom": "23424234",
+      "bathroom": "234234234",
+      "garden": "1",
+      "sellerId": "1",
+      "status": "FOR SALE",
+      "id": 13
     }
   ],
   "buyer": [

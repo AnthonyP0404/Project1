@@ -1,5 +1,6 @@
 import ViewAllProperties from "./ViewAllProperties";
 import { useNavigate } from "react-router-dom";
+import { useEffect,useState } from "react";
 
 
 function SubmitProperty() {
@@ -14,9 +15,35 @@ function SubmitProperty() {
         if (document.getElementById("bedroom").value == "") { document.getElementById("bedroom").placeholder = '*required field*'; allFieldsFilled = false; }
         if (document.getElementById("bathroom").value == "") { document.getElementById("bathroom").placeholder = '*required field*'; allFieldsFilled = false; }
         if (document.getElementById("garden").value == "") { document.getElementById("garden").placeholder = '*required field*'; allFieldsFilled = false; }
-        if (document.getElementById("sellerId").value == "") { document.getElementById("sellerId").placeholder = '*required field*'; allFieldsFilled = false; }
+        if (document.getElementById("sellerId").value == "") { document.getElementById("sellerId").placeholder = '*required field*'; }
 
-        if (allFieldsFilled) saveData()
+        if (allFieldsFilled) {
+            if (document.getElementById("sellerId").value == "") alert("Property requires a 'Seller ID'.")
+            else if (!checkSellerExists()) alert("Seller with this ID does not exist.")
+            else saveData()
+        }
+    }
+
+    let [sellers, addSeller] = useState([])
+    useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching
+    function checkSellerExists() {
+        let sID = parseInt(document.getElementById("sellerId").value)
+        for(let i = 0; i < sellers.length; i++) {
+            if (sellers[i].id == sID) return true
+        }
+        return false
+    }
+
+    function sendRequest() {
+        let url = "http://localhost:8081/seller"
+        fetch(url).then(processResponse)
+    }
+    function processResponse(response) {
+        let res = response.json()
+        res.then(processRecords)
+    }
+    function processRecords(records) {
+        addSeller(records)
     }
 
     function saveData() {
@@ -62,13 +89,13 @@ function SubmitProperty() {
                 <h2> Enter Property Information </h2> <br />
 
                 <span> Address: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="address" /> </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span> Postcode: &nbsp;&nbsp; <input type="text" id="postcode" /> </span> <br/><br/>
-                <span> Type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="type" /> </span> <br/><br/>
+                <span> Postcode: &nbsp;&nbsp; <input type="text" id="postcode" /> </span> <br /><br />
+                <span> Type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="type" /> </span> <br /><br />
                 <span> Bedrooms: &nbsp;&nbsp; <input type="text" id="bedroom" /> </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span> Bathrooms: <input type="text" id="bathroom" /> </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span> Gardens: <input type="text" id="garden" /> </span> <br/><br/>
-                <span> Price: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="price" /> </span> <br/><br/>
-                <span> Seller ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="sellerId" /> </span> <br/><br/>
+                <span> Gardens: <input type="text" id="garden" /> </span> <br /><br />
+                <span> Price: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="price" /> </span> <br /><br />
+                <span> Seller ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="sellerId" /> </span> <br /><br />
 
                 <input type="button" className="marginedButton" value="Add" onClick={() => fieldCheck()} />
                 <input type="button" className="marginedButton" value="Cancel" onClick={() => navigate("/propertiesPage")} />

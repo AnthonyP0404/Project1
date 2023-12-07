@@ -21,16 +21,19 @@ function ViewProperty() {
 
     function createForSaleButtons() {
         return [<input type='button' value='Withdraw' onClick={() => withdrawProperty()} />,
-        <input type='button' value='Ammend' className="marginedButton" onClick={() => ammendProperty()} />,
-        <input type='button' value='Back' className="marginedButton" onClick={() => navigate('/propertiesPage')} />]
+                <input type='button' value='Ammend' className="marginedButton" onClick={() => navigate('/propertiesPage/viewProperty/ammendProperty', {state: {property}})} />,
+                <input type='button' value='Delete' className="marginedButton" onClick={() => deleteProperty()} />,
+                <input type='button' value='Back' className="marginedButton" onClick={() => navigate('/propertiesPage')} />]
     }
     function createWithdrawnButtons() {
         return [<input type='button' value='Resubmit' onClick={() => resubmitProperty()} />,
-        <input type='button' value='Ammend' className="marginedButton" onClick={() => ammendProperty()} />,
-        <input type='button' value='Back' className="marginedButton" onClick={() => navigate('/propertiesPage')} />]
+                <input type='button' value='Ammend' className="marginedButton" onClick={() => navigate('/propertiesPage/viewProperty/ammendProperty', {state: {property}})} />,
+                <input type='button' value='Delete' className="marginedButton" onClick={() => deleteProperty()} />,
+                <input type='button' value='Back' className="marginedButton" onClick={() => navigate('/propertiesPage')} />]
     }
     function createSoldButtons() {
-        return [<input type='button' value='Back' className="marginedButton" onClick={() => navigate('/propertiesPage')} />]
+        return [<input type='button' value='Delete' onClick={() => deleteProperty()} />,
+                <input type='button' value='Back' className="marginedButton" onClick={() => navigate('/propertiesPage')} />]
     }
 
 
@@ -53,6 +56,7 @@ function ViewProperty() {
             })
         }
     }
+    
     function resubmitProperty() {
         let choice = window.confirm("Do you want to resubmit this property?")
         if (choice) {
@@ -72,8 +76,17 @@ function ViewProperty() {
             })
         }
     }
-    function ammendProperty() {
-        return ""
+
+    function deleteProperty() {
+        let choice = window.confirm("Do you want to delete this property?")
+        if (choice) {
+            let url = "http://localhost:8081/property/" + property.id
+            let ref = fetch(url, { method: "Delete" })
+            ref.then(() => {
+                alert("Property of id " + property.id + " has been deleted.")
+                navigate('/propertiesPage')
+            })
+        }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,7 +111,7 @@ function ViewProperty() {
                     <tr> <td> Buyer ID  </td> <td> {property.buyerId}   </td> </tr>
                 </table> <br /><br />
 
-                <div id="viewPropertyFunctionality">
+                <div id="viewPropertyButtons">
                     {statusCheck()}
                 </div>
 

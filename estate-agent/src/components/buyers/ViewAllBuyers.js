@@ -32,7 +32,6 @@ function ViewAllBuyers() {
                 alert("Buyer of id " + buyerID + " has been deleted.")
                 window.location.reload(false);
             })
-
         }
     }
 

@@ -344,10 +344,7 @@
   padding: 10px;
 }
 
-#viewPropertyFunctionality {
-  align-items: center;
-}
-#viewPropertyFunctionality input{
+#viewPropertyButtons input{
   align-items: center;
   padding: 15px;
   width: 250px;

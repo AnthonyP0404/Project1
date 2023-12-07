@@ -16,6 +16,7 @@ import PropertiesPage from "./properties/PropertiesPage";
 import SubmitProperty from "./properties/SubmitProperty";
 import FilterProperties from "./properties/FilterProperties";
 import ViewProperty from "./properties/ViewProperty";
+import AmmendProperty from "./properties/AmmendProperty";
 
 
 function MyNavbar() {
@@ -41,16 +42,17 @@ function MyNavbar() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/buyersPage"                      element={<BuyersPage />} />
-          <Route path="/buyersPage/registerBuyer"        element={<RegisterBuyer />} />
-
-          <Route path="/sellersPage"                     element={<SellersPage />} />
-          <Route path="/sellersPage/registerSeller"      element={<RegisterSeller />} />
-
-          <Route path="/propertiesPage"                  element={<PropertiesPage />} />
-          <Route path="/propertiesPage/submitProperty"   element={<SubmitProperty />} />
-          <Route path="/propertiesPage/filterProperties" element={<FilterProperties />} /> 
-          <Route path="/propertiesPage/viewProperty"     element={<ViewProperty />} /> 
+          <Route path="/buyersPage"                                     element={<BuyersPage />} />
+          <Route path="/buyersPage/registerBuyer"                       element={<RegisterBuyer />} />
+                  
+          <Route path="/sellersPage"                                    element={<SellersPage />} />
+          <Route path="/sellersPage/registerSeller"                     element={<RegisterSeller />} />
+                  
+          <Route path="/propertiesPage"                                 element={<PropertiesPage />} />
+          <Route path="/propertiesPage/submitProperty"                  element={<SubmitProperty />} />
+          <Route path="/propertiesPage/filterProperties"                element={<FilterProperties />} /> 
+          <Route path="/propertiesPage/viewProperty"                    element={<ViewProperty />} /> 
+          <Route path="/propertiesPage/viewProperty/ammendProperty"     element={<AmmendProperty />} /> 
 
         </Routes>
       </BrowserRouter>

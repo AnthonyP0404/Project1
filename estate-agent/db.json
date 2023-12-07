@@ -157,7 +157,7 @@
       "postcode": "MC1 1MC",
       "type": "SEMI",
       "price": 150000,
-      "bedroom": 4,
+      "bedroom": "5",
       "bathroom": 2,
       "garden": 1,
       "sellerId": 2,

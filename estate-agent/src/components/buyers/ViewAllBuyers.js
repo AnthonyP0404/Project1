@@ -5,22 +5,17 @@ function ViewAllBuyers() {
     let navigate = useNavigate()
 
     let [buyers, addBuyers] = useState([])
-
     function sendRequest() {
         let url = "http://localhost:8081/buyer"
         fetch(url).then(processResponse)
     }
-
-
     function processResponse(response) {
         let res = response.json()
         res.then(processRecords)
     }
-
     function processRecords(records) {
         addBuyers(records)
     }
-
     useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching
 
     function deleteRow(buyerID) {

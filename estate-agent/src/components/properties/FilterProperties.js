@@ -51,18 +51,18 @@ function FilterProperties() {
         for (let i = 0; i < properties.length; i++) {
             if (checkMatch(properties[i])) {
                 let tr = document.createElement("tr")
-                let tdID = document.createElement("td")
-                let tdAddress = document.createElement("td")
-                let tdPostcode = document.createElement("td")
-                let tdType = document.createElement("td")
-                let tdPrice = document.createElement("td")
-                let tdBedroom = document.createElement("td")
-                let tdBathroom = document.createElement("td")
-                let tdGarden = document.createElement("td")
-                let tdSellerId = document.createElement("td")
-                let tdStatus = document.createElement("td")
-                let tdBuyerId = document.createElement("td")
-                let tdView = document.createElement("input")
+                    let tdID = document.createElement("td")
+                    let tdAddress = document.createElement("td")
+                    let tdPostcode = document.createElement("td")
+                    let tdType = document.createElement("td")
+                    let tdPrice = document.createElement("td")
+                    let tdBedroom = document.createElement("td")
+                    let tdBathroom = document.createElement("td")
+                    let tdGarden = document.createElement("td")
+                    let tdSellerId = document.createElement("td")
+                    let tdStatus = document.createElement("td")
+                    let tdBuyerId = document.createElement("td")
+                    let tdView = document.createElement("input")
 
                 tdID.innerHTML = properties[i].id
                 tdAddress.innerHTML = properties[i].address
@@ -202,7 +202,7 @@ function FilterProperties() {
             <br />
 
 
-            <div id="pageComponent">
+            <div id="pageComponent" >
                 <div id="dataTable" style={{ visibility: "hidden" }}>
                     <table id="filteredPropertiesTable">
                         <thead>
@@ -222,7 +222,7 @@ function FilterProperties() {
                             </tr>
                         </thead>
 
-                        <tbody id="filteredPropertiesTableBody">
+                        <tbody id="filteredPropertiesTableBody" > 
 
                         </tbody>
                     </table>

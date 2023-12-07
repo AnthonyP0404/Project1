@@ -274,7 +274,8 @@
       "bathroom": 2,
       "garden": 1,
       "sellerId": 12,
-      "status": "FOR SALE"
+      "status": "SOLD",
+      "buyerId": 1
     }
   ],
   "buyer": [
@@ -397,14 +398,6 @@
       "address": "9 Whisker Way, Oxford",
       "postcode": "OX1 1PA",
       "phone": "01234567814"
-    },
-    {
-      "firstName": "alice",
-      "surname": "johnson",
-      "address": "asd",
-      "postcode": "asd",
-      "phone": "asd",
-      "id": 16
     },
     {
       "firstName": "alice",

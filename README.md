@@ -20,6 +20,9 @@ For the purpose of this project:
 ---
 
 ### Points of improvement / refactoring:
+- currently everything is displayed and accessible to everyone 
+    - in practice, functions would only load based on if one is accessing the website as a buyer or seller, but there's no way to check that at the moment
+
 - view button in 'Filtering Page' doesn't like the 'height' css, so it's just padded to fit the grid instead of being functional
 
 - scroll bar moves everything to the left when it does appear.

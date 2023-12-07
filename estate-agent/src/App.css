@@ -35,7 +35,11 @@
 
 #pageHeading {
   padding: 30px;
+  margin: 24px;
   color: white;
+  text-shadow: 3px 3px black;
+  background-repeat: no-repeat;
+  background-size:cover;
 }
 
 #pageComponent {
@@ -48,19 +52,20 @@
 }
 
 
-
-/* FOOTER ----------------------------------*/
-/* .myfooter {
-  margin-top: auto;
-  padding: 30px;
-  background: white;
-  text-align: left;
-
-} */
+/* HOME PAGE --------------------------------------------------------------------------------------*/
+#homePage #pageHeading {
+  background-image: url("./img/banners/background-top.jpg");
+}
 
 
 
-/* MAIN SELLERS PAGE -----------------------*/
+
+
+/* MAIN SELLERS PAGE -------------------------------------------------------------------------------*/
+#sellersPage #pageHeading {
+  background-image: url("./img/banners/background-mid2.jpg");
+}
+
 #sellersPage span {
   margin: 10px;
   border: solid 1px black;
@@ -130,7 +135,10 @@
 
 
 
-/* MAIN BUYERS PAGE -----------------------*/
+/* MAIN BUYERS PAGE -----------------------------------------------------------------------------------*/
+#buyersPage #pageHeading {
+  background-image: url("./img/banners/background-mid.jpg");
+}
 
 #buyersPage span {
   margin: 10px;
@@ -201,7 +209,10 @@
 
 
 
-/* MAIN PROPERTIES PAGE -----------------------*/
+/* MAIN PROPERTIES PAGE -------------------------------------------------------------------------*/
+#propertiesPage #pageHeading {
+  background-image: url("./img/banners/background-bottom.jpg");
+}
 
 #propertiesPage span {
   margin: 10px;

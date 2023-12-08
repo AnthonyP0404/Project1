@@ -23,7 +23,8 @@ function RegisterBuyer() {
     }
 
     let [buyers, addBuyers] = useState([])
-    useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching
+    useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching data
+
     function newBuyerCheck() {
         
         let fname = document.getElementById("fname").value.toLowerCase()

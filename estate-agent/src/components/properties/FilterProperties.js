@@ -23,6 +23,7 @@ function FilterProperties() {
         document.getElementById("description").style.visibility = "hidden"
         document.getElementById("filteredPropertiesTableBody").innerHTML = ""
         document.getElementById("dataTable").style.visibility = "hidden"
+        filterSearch()
     }
 
 
@@ -76,14 +77,15 @@ function FilterProperties() {
                 tdStatus.innerHTML = properties[i].status
                 tdBuyerId.innerHTML = properties[i].buyerId
                 if (properties[i].buyerId == null) tdBuyerId.innerHTML = ""
-
+                
                 tdView.value = "View"
                 tdView.type = "button"
                 tdView.style.width = "100%"
+                tdView.style.height = "100%"
                 tdView.style.padding = "13px"
-                tdView.style.alignContent = "center"
-                let property = properties[i]
+                tdView.style.alignItems = "center"
                 tdView.onclick = function () { navigate('/propertiesPage/viewProperty', { state: { property } }) }
+                let property = properties[i]
 
                 tr.appendChild(tdID)
                 tr.appendChild(tdAddress)
@@ -151,7 +153,7 @@ function FilterProperties() {
                     <option> --- Filter by property type --- </option>
                     <option> APARTMENT </option>
                     <option> DETACHED </option>
-                    <option> SEMI-DETACHED </option>
+                    <option> SEMI </option>
                 </select>
 
                 <select id="pPrice" className="filterDropdowns">

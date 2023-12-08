@@ -3,25 +3,25 @@ import { useState, useEffect } from "react";
 
 import Carousel from 'react-bootstrap/Carousel';
 
-import imageApartment1   from './../../img/houses/APARTMENT/img1.jpg';
-import imageApartment2   from './../../img/houses/APARTMENT/img2.jpg';
-import imageApartment3   from './../../img/houses/APARTMENT/img3.jpg';
+import imageApartment1 from './../../img/houses/APARTMENT/img1.jpg';
+import imageApartment2 from './../../img/houses/APARTMENT/img2.jpg';
+import imageApartment3 from './../../img/houses/APARTMENT/img3.jpg';
 
-import imageSemi1   from './../../img/houses/SEMI/img1.jpg';
-import imageSemi2   from './../../img/houses/SEMI/img2.jpg';
-import imageSemi3   from './../../img/houses/SEMI/img3.jpg';
+import imageSemi1 from './../../img/houses/SEMI/img1.jpg';
+import imageSemi2 from './../../img/houses/SEMI/img2.jpg';
+import imageSemi3 from './../../img/houses/SEMI/img3.jpg';
 
-import imageDetached1   from './../../img/houses/DETACHED/img1.jpg';
-import imageDetached2   from './../../img/houses/DETACHED/img2.jpg';
-import imageDetached3   from './../../img/houses/DETACHED/img3.jpg';
+import imageDetached1 from './../../img/houses/DETACHED/img1.jpg';
+import imageDetached2 from './../../img/houses/DETACHED/img2.jpg';
+import imageDetached3 from './../../img/houses/DETACHED/img3.jpg';
 
 function ViewProperty() {
     let property = useLocation().state.property
     let navigate = useNavigate()
 
 
-    
-    let imageUrl1 = './../../img/houses/' +property.type+ '/img1.jpg'
+
+    let imageUrl1 = './../../img/houses/' + property.type + '/img1.jpg'
 
     function statusCheck() {
         switch (property.status) {
@@ -150,7 +150,30 @@ function ViewProperty() {
 
 
     function chooseImage(num) {
-        return 
+        switch (property.type) {
+            case "SEMI":
+                switch (num) {
+                    case 1: return imageSemi1
+                    case 2: return imageSemi2
+                    case 3: return imageSemi3
+                    default: return imageSemi1
+                }
+            case "DETACHED":
+                switch (num) {
+                    case 1: return imageDetached1
+                    case 2: return imageDetached2
+                    case 3: return imageDetached3
+                    default: return imageDetached1
+                }
+            case "APARTMENT":
+                switch (num) {
+                    case 1: return imageApartment1
+                    case 2: return imageApartment2
+                    case 3: return imageApartment3
+                    default: return imageApartment1
+                }
+        }
+
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,16 +190,13 @@ function ViewProperty() {
                             <div className="col-md-6">
                                 <Carousel className="m-4">
                                     <Carousel.Item>
-                                        {/* <img src={chooseImage(1)} /> */}
-                                        <img src={imageSemi1} />
+                                        <img src={chooseImage(1)} /> 
                                     </Carousel.Item>
                                     <Carousel.Item>
-                                        {/* <img src={chooseImage(2)} /> */}
-                                        <img src={imageSemi2} />
+                                        <img src={chooseImage(2)} /> 
                                     </Carousel.Item>
                                     <Carousel.Item>
-                                        {/* <img src={chooseImage(3)} /> */}
-                                        <img src={imageSemi3} />
+                                        <img src={chooseImage(3)} /> 
                                     </Carousel.Item>
                                 </Carousel>
                             </div>

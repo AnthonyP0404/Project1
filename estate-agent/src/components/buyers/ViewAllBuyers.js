@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from 'react-router-dom'
 
 function ViewAllBuyers() {
-    let navigate = useNavigate()
 
     let [buyers, addBuyers] = useState([])
     function sendRequest() {

@@ -28,3 +28,8 @@ For the purpose of this project:
 - scroll bar moves everything to the left when it does appear.
     - would rather it always be there so components don't move when navigating between pages
     - *Temporary solution*: nothing
+
+- every component is a new page
+    - for registering buyer/seller and adding property, would be better to load that section onto the same page
+        - this would avoid fetching all data again
+

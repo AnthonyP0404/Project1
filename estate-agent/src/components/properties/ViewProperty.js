@@ -15,9 +15,17 @@ import imageDetached1 from './../../img/houses/DETACHED/img1.jpg';
 import imageDetached2 from './../../img/houses/DETACHED/img2.jpg';
 import imageDetached3 from './../../img/houses/DETACHED/img3.jpg';
 
+import BookingsTable from "../bookings/BookingsTable";
+import { Button } from "react-bootstrap";
+import Modal from 'react-bootstrap/Modal';
+
 function ViewProperty() {
     let property = useLocation().state.property
     let navigate = useNavigate()
+    const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 
 
@@ -53,17 +61,27 @@ function ViewProperty() {
     }
 
     let [buyers, addBuyers] = useState([])
+    let [bookings, setBookings] = useState([])
+    let [bookingsFlag, setbookingsFlag] = useState(false)
     function sendRequest() {
         let url = "http://localhost:8081/buyer"
         fetch(url).then(processResponse)
+        let url2 = "http://localhost:8081/booking"
+        fetch(url2).then(res=>res.json().then(setBookings))
+
     }
     function processResponse(response) {
+        let res = response.json()
+        res.then(processRecords)
+    }
+    function processResponse2(response) {
         let res = response.json()
         res.then(processRecords)
     }
     function processRecords(records) {
         addBuyers(records)
     }
+
     useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching
     function buyProperty() {
         let bID = parseInt(prompt("Please enter your buyer ID:"))
@@ -148,6 +166,14 @@ function ViewProperty() {
         }
     }
 
+    function setbookingsFlagReverse(){
+        if(!bookingsFlag){
+            setbookingsFlag(false)
+        }else{
+            setbookingsFlag(true)
+        }
+    }
+
 
     function chooseImage(num) {
         switch (property.type) {
@@ -220,13 +246,34 @@ function ViewProperty() {
                     </div>
                 </div>
 
+                <button onClick={handleShow}>Add booking</button>
+                <BookingsTable bookings={bookings}/>
 
+                
 
                 <div id="viewPropertyButtons">
                     {statusCheck()}
                 </div>
 
             </div>
+            <>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+           
         </div>
     );
 }

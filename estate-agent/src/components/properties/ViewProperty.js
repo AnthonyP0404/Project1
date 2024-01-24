@@ -18,7 +18,6 @@ import imageDetached3 from './../../img/houses/DETACHED/img3.jpg';
 import BookingsTable from "../bookings/BookingsTable";
 import { Button, Dropdown, Row } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-import DatePicker from "react-datepicker";
 
 function ViewProperty() {
     let property = useLocation().state.property
@@ -27,10 +26,6 @@ function ViewProperty() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-
-
-    let imageUrl1 = './../../img/houses/' + property.type + '/img1.jpg'
 
     function statusCheck() {
         switch (property.status) {
@@ -67,24 +62,13 @@ function ViewProperty() {
 
     function sendRequest() {
         let url = "http://localhost:8081/buyer"
-        fetch(url).then(processResponse)
+        fetch(url).then(res=>res.json().then(addBuyers))
         let url2 = "http://localhost:8081/booking"
         fetch(url2).then(res=>res.json().then(setBookings))
-
-    }
-    function processResponse(response) {
-        let res = response.json()
-        res.then(processRecords)
-    }
-    function processResponse2(response) {
-        let res = response.json()
-        res.then(processRecords)
-    }
-    function processRecords(records) {
-        addBuyers(records)
     }
 
     useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching
+
     function buyProperty() {
         let bID = parseInt(prompt("Please enter your buyer ID:"))
         if (bID != null) {
@@ -168,15 +152,6 @@ function ViewProperty() {
         }
     }
 
-    function setbookingsFlagReverse(){
-        if(!bookingsFlag){
-            setbookingsFlag(false)
-        }else{
-            setbookingsFlag(true)
-        }
-    }
-
-
     function chooseImage(num) {
         switch (property.type) {
             case "SEMI":
@@ -215,7 +190,6 @@ function ViewProperty() {
             }
         ] 
 
-        const [selectedDate, setSelectedDate] = useState(new Date());
         const dateRef = useRef();
         const slotRef = useRef();
         const buyerRef = useRef();
@@ -258,10 +232,6 @@ function ViewProperty() {
             let filteredBookings = bookings.filter(booking => booking.propertyId === property.id)
             .filter(booking => booking.time === time.toISOString());
 
-            console.log(time.toISOString()) 
-     
-            console.log(filteredBookings[0].time.toString())
-
             if(filteredBookings.length > 0) {
                 return false;
             } else {
@@ -281,7 +251,20 @@ function ViewProperty() {
                 sendRequest();
         })
     }
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function DeleteBooking(id){
+        let url = `http://localhost:8081/booking/${id}`;
+        let ref = fetch(url, { 
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" }})
+         
+        ref.then(() => {
+            alert("Booking deleted successfully")
+            sendRequest();
+    })
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
         <div id="pageComponent">
@@ -330,7 +313,7 @@ function ViewProperty() {
                 </div>
 
                 {property.status === "FOR SALE" && <><Button variant="primary" onClick={handleShow}>Add booking</Button>
-                <BookingsTable bookings={bookings.filter(booking => booking.propertyId === property.id)}/></>}
+                <BookingsTable DeleteBooking={DeleteBooking} bookings={bookings.filter(booking => booking.propertyId === property.id)}/></>}
 
             </div>
             <>

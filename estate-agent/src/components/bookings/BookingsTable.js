@@ -8,33 +8,29 @@ export default function BookingsTable(props) {
     }
     
   return (
-    <>
-
-    <Table striped="columns">
+    <div className="col-md-6">
+    <table  id="viewPropertyTable">
       <thead>
         <tr>
-          <th>#</th>
+          <th>ID</th>
           <th>Datetime</th>
           <th>Buyer</th>
           <th>Action</th>
         </tr>
       </thead>
-
-
       <tbody>
         {props.bookings.map((booking)=>(
             <tr>
                 <td>{booking.id}</td>
-                <td>{booking.buyerid}</td>
-                <td>{booking.time}</td>
-                {/* <td><Button>
-                    <Link onClick={()=>handleCancelBooking(booking.id)}>Cancel</Link>
-                    </Button></td> */}
+                <td>{booking.time}</td>                
+                <td>{booking.buyerId}</td>
+                {<td><Button onclick={()=>handleCancelBooking(booking.id)}>
+                    Cancel
+                    </Button></td>}
           </tr>
         ))}
-        
       </tbody>
-    </Table>
-    </>
+    </table>
+    </div>
   )
 }

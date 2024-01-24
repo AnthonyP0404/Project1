@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -16,8 +16,9 @@ import imageDetached2 from './../../img/houses/DETACHED/img2.jpg';
 import imageDetached3 from './../../img/houses/DETACHED/img3.jpg';
 
 import BookingsTable from "../bookings/BookingsTable";
-import { Button } from "react-bootstrap";
+import { Button, Dropdown, Row } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
+import DatePicker from "react-datepicker";
 
 function ViewProperty() {
     let property = useLocation().state.property
@@ -63,6 +64,7 @@ function ViewProperty() {
     let [buyers, addBuyers] = useState([])
     let [bookings, setBookings] = useState([])
     let [bookingsFlag, setbookingsFlag] = useState(false)
+
     function sendRequest() {
         let url = "http://localhost:8081/buyer"
         fetch(url).then(processResponse)
@@ -202,7 +204,84 @@ function ViewProperty() {
 
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var timeSlots =  [
+            {
+                "value": 9,
+                "text": "9-10"
+            },
+            {
+                "value": 10,
+                "text": "10-11"
+            }
+        ] 
+
+        const [selectedDate, setSelectedDate] = useState(new Date());
+        const dateRef = useRef();
+        const slotRef = useRef();
+        const buyerRef = useRef();
+
+        function saveChangeBookingHandler(){
+
+            // console.log(dateRef.current.value);
+            
+            var dateDB = new Date();
+            var dateInput = dateRef.current.value.split('-');
+
+            // console.log(dateInput);
+
+            dateDB.setUTCDate(dateInput[2]); 
+            dateDB.setUTCMonth(parseInt(dateInput[1] - 1));
+            dateDB.setUTCFullYear(dateInput[0]);
+
+            // console.log(slotRef.current.value);
+
+            dateDB.setHours(slotRef.current.value);
+            dateDB.setMinutes(0);
+            dateDB.setSeconds(0);
+            dateDB.setMilliseconds(0);
+
+            let newBooking = {
+                "time": dateDB,
+                "buyerId": buyerRef.current.value,
+                "propertyId": property.id
+            }
+
+            if(CanBookTimeSlot(dateDB)){
+            console.log(newBooking);
+            SaveNewBooking(newBooking);
+            } else {
+                alert("Time slot already taken. Please select a new one.")
+            }
+        }
+
+        function CanBookTimeSlot(time){
+            let filteredBookings = bookings.filter(booking => booking.propertyId === property.id)
+            .filter(booking => booking.time === time.toISOString());
+
+            console.log(time.toISOString()) 
+     
+            console.log(filteredBookings[0].time.toString())
+
+            if(filteredBookings.length > 0) {
+                return false;
+            } else {
+                return true;
+            }    
+        }
+
+        function SaveNewBooking(booking){
+            let url = "http://localhost:8081/booking";
+            let ref = fetch(url, { 
+                method: "POST",
+                headers: { "Content-Type": "application/json" }, 
+                body: JSON.stringify(booking)});
+            ref.then(() => {
+                alert("Booking created successfully")
+                handleClose();
+                sendRequest();
+        })
+    }
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
         <div id="pageComponent">
@@ -245,29 +324,59 @@ function ViewProperty() {
                         </div>
                     </div>
                 </div>
-
-                <button onClick={handleShow}>Add booking</button>
-                <BookingsTable bookings={bookings}/>
-
-                
-
+ 
                 <div id="viewPropertyButtons">
                     {statusCheck()}
                 </div>
+
+                {property.status === "FOR SALE" && <><Button variant="primary" onClick={handleShow}>Add booking</Button>
+                <BookingsTable bookings={bookings.filter(booking => booking.propertyId === property.id)}/></>}
 
             </div>
             <>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Property Booking</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+
+        {/* <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Buyers
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        {buyers.map(buyer => (<Dropdown.Item value={buyer.id}>{buyer.firstName} {buyer.surname}</Dropdown.Item>))}
+      </Dropdown.Menu>
+    </Dropdown>
+    
+    <Dropdown ref={slotRef} >
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          Time Slots
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+        {timeSlots.map(slot => (<Dropdown.Item value={slot.value}>{slot.text}</Dropdown.Item>))}
+      </Dropdown.Menu>
+    </Dropdown> */}
+
+    <select ref={buyerRef} className="filterDropdowns">
+        {buyers.map(buyer => (<option value={buyer.id}>{buyer.firstName} {buyer.surname}</option>))}
+    </select>
+
+    <select ref={slotRef} className="filterDropdowns">
+        {timeSlots.map(slot => (<option value={slot.value}>{slot.text}</option>))}
+     </select>
+
+    {/* <DatePicker ref={dateRef} defaultValue={new Date()} selected={selectedDate} onChange={dateTimeChangeHandler} /> */}
+
+    <input ref={dateRef} type="date" id="start" name="trip-start" min={new Date().getDate()} required/>
+
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={saveChangeBookingHandler}>
             Save Changes
           </Button>
         </Modal.Footer>

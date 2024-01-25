@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "npx json-server --watch db.json --port 8081",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

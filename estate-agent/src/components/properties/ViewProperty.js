@@ -194,33 +194,38 @@ function ViewProperty() {
         const slotRef = useRef();
         const buyerRef = useRef();
 
+        let getBookingDateTimeString = (date,startHour)=>{
+            //takes input in form date yyyy-mm-dd, hour int
+           // console.log(date)
+            let dateString = new Date();
+            let dateInput = date.split('-');
+
+            dateString.setUTCDate(dateInput[2]); 
+            dateString.setUTCMonth(parseInt(dateInput[1] - 1));
+            dateString.setUTCFullYear(dateInput[0]);
+
+
+            dateString.setHours(startHour);
+            dateString.setMinutes(0);
+            dateString.setSeconds(0);
+            dateString.setMilliseconds(0);
+
+            return dateString
+        }
+
         function saveChangeBookingHandler(){
 
             // console.log(dateRef.current.value);
             
-            var dateDB = new Date();
-            var dateInput = dateRef.current.value.split('-');
-
-            // console.log(dateInput);
-
-            dateDB.setUTCDate(dateInput[2]); 
-            dateDB.setUTCMonth(parseInt(dateInput[1] - 1));
-            dateDB.setUTCFullYear(dateInput[0]);
-
-            // console.log(slotRef.current.value);
-
-            dateDB.setHours(slotRef.current.value);
-            dateDB.setMinutes(0);
-            dateDB.setSeconds(0);
-            dateDB.setMilliseconds(0);
-
+           let dateString = getBookingDateTimeString(dateRef.current.value,slotRef.current.value)
+            console.log(`datestring ${dateString}`)
             let newBooking = {
-                "time": dateDB,
+                "time": dateString,
                 "buyerId": buyerRef.current.value,
                 "propertyId": property.id
             }
 
-            if(CanBookTimeSlot(dateDB)){
+            if(CanBookTimeSlot(dateString)){
             console.log(newBooking);
             SaveNewBooking(newBooking);
             } else {
@@ -267,7 +272,7 @@ function ViewProperty() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <div id="pageComponent">
+        <div id="pageComponent" data-testid='viewproperty-1'>
             <div id="viewPropertyPage">
                 <h1 id="pageHeading"> <b>Property #{property.id} </b> </h1>
                 <p style={{ color: 'white' }}> Below are all details surrounding the selected property. </p>
@@ -323,24 +328,6 @@ function ViewProperty() {
           <Modal.Title>Property Booking</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
-        {/* <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Buyers
-      </Dropdown.Toggle>
-      <Dropdown.Menu>
-        {buyers.map(buyer => (<Dropdown.Item value={buyer.id}>{buyer.firstName} {buyer.surname}</Dropdown.Item>))}
-      </Dropdown.Menu>
-    </Dropdown>
-    
-    <Dropdown ref={slotRef} >
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Time Slots
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-        {timeSlots.map(slot => (<Dropdown.Item value={slot.value}>{slot.text}</Dropdown.Item>))}
-      </Dropdown.Menu>
-    </Dropdown> */}
 
     <select ref={buyerRef} className="filterDropdowns">
         {buyers.map(buyer => (<option value={buyer.id}>{buyer.firstName} {buyer.surname}</option>))}

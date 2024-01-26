@@ -533,6 +533,30 @@
       "buyerId": "1",
       "propertyId": 6,
       "id": 24
+    },
+    {
+      "time": "2024-01-17T09:00:00.000Z",
+      "buyerId": "1",
+      "propertyId": 2,
+      "id": 25
+    },
+    {
+      "time": "2024-02-01T09:00:00.000Z",
+      "buyerId": "1",
+      "propertyId": 2,
+      "id": 26
+    },
+    {
+      "time": "2024-01-27T09:00:00.000Z",
+      "buyerId": "1",
+      "propertyId": 4,
+      "id": 27
+    },
+    {
+      "time": "2024-01-27T10:00:00.000Z",
+      "buyerId": "1",
+      "propertyId": 2,
+      "id": 28
     }
   ]
 }

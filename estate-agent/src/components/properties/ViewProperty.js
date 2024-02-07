@@ -272,7 +272,7 @@ function ViewProperty() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
-        <div id="pageComponent" data-testid='viewproperty-1'>
+        <div id="pageComponent" data-testid='viewproperty1'>
             <div id="viewPropertyPage">
                 <h1 id="pageHeading"> <b>Property #{property.id} </b> </h1>
                 <p style={{ color: 'white' }}> Below are all details surrounding the selected property. </p>
@@ -295,7 +295,7 @@ function ViewProperty() {
                             </div>
 
                             <div className="col-md-6">
-                                <table id="viewPropertyTable">
+                                <table id="viewPropertyTable" >
                                     <tr> <td style={{ width: "30%" }}> ID </td> <td> {property.id} </td> </tr>
                                     <tr> <td> Address   </td> <td> {property.address}   </td> </tr>
                                     <tr> <td> Postcode  </td> <td> {property.postcode}  </td> </tr>

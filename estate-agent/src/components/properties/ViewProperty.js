@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -15,13 +15,17 @@ import imageDetached1 from './../../img/houses/DETACHED/img1.jpg';
 import imageDetached2 from './../../img/houses/DETACHED/img2.jpg';
 import imageDetached3 from './../../img/houses/DETACHED/img3.jpg';
 
+import BookingsTable from "../bookings/BookingsTable";
+import { Button, Dropdown, Row } from "react-bootstrap";
+import Modal from 'react-bootstrap/Modal';
+
 function ViewProperty() {
     let property = useLocation().state.property
     let navigate = useNavigate()
+    const [show, setShow] = useState(false);
 
-
-
-    let imageUrl1 = './../../img/houses/' + property.type + '/img1.jpg'
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
     function statusCheck() {
         switch (property.status) {
@@ -53,18 +57,18 @@ function ViewProperty() {
     }
 
     let [buyers, addBuyers] = useState([])
+    let [bookings, setBookings] = useState([])
+    let [bookingsFlag, setbookingsFlag] = useState(false)
+
     function sendRequest() {
         let url = "http://localhost:8081/buyer"
-        fetch(url).then(processResponse)
+        fetch(url).then(res=>res.json().then(addBuyers))
+        let url2 = "http://localhost:8081/booking"
+        fetch(url2).then(res=>res.json().then(setBookings))
     }
-    function processResponse(response) {
-        let res = response.json()
-        res.then(processRecords)
-    }
-    function processRecords(records) {
-        addBuyers(records)
-    }
+
     useEffect(() => { sendRequest() }, []) //this line stops the page from constantly fetching
+
     function buyProperty() {
         let bID = parseInt(prompt("Please enter your buyer ID:"))
         if (bID != null) {
@@ -148,7 +152,6 @@ function ViewProperty() {
         }
     }
 
-
     function chooseImage(num) {
         switch (property.type) {
             case "SEMI":
@@ -176,7 +179,92 @@ function ViewProperty() {
 
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var timeSlots =  [
+            {
+                "value": 9,
+                "text": "9-10"
+            },
+            {
+                "value": 10,
+                "text": "10-11"
+            }
+        ] 
+
+        const dateRef = useRef();
+        const slotRef = useRef();
+        const buyerRef = useRef();
+
+        function saveChangeBookingHandler(){
+
+            // console.log(dateRef.current.value);
+            
+            var dateDB = new Date();
+            var dateInput = dateRef.current.value.split('-');
+
+            // console.log(dateInput);
+
+            dateDB.setUTCDate(dateInput[2]); 
+            dateDB.setUTCMonth(parseInt(dateInput[1] - 1));
+            dateDB.setUTCFullYear(dateInput[0]);
+
+            // console.log(slotRef.current.value);
+
+            dateDB.setHours(slotRef.current.value);
+            dateDB.setMinutes(0);
+            dateDB.setSeconds(0);
+            dateDB.setMilliseconds(0);
+
+            let newBooking = {
+                "time": dateDB,
+                "buyerId": buyerRef.current.value,
+                "propertyId": property.id
+            }
+
+            if(CanBookTimeSlot(dateDB)){
+            console.log(newBooking);
+            SaveNewBooking(newBooking);
+            } else {
+                alert("Time slot already taken. Please select a new one.")
+            }
+        }
+
+        function CanBookTimeSlot(time){
+            let filteredBookings = bookings.filter(booking => booking.propertyId === property.id)
+            .filter(booking => booking.time === time.toISOString());
+
+            if(filteredBookings.length > 0) {
+                return false;
+            } else {
+                return true;
+            }    
+        }
+
+        function SaveNewBooking(booking){
+            let url = "http://localhost:8081/booking";
+            let ref = fetch(url, { 
+                method: "POST",
+                headers: { "Content-Type": "application/json" }, 
+                body: JSON.stringify(booking)});
+            ref.then(() => {
+                alert("Booking created successfully")
+                handleClose();
+                sendRequest();
+        })
+    }
+
+    function DeleteBooking(id){
+        let url = `http://localhost:8081/booking/${id}`;
+        let ref = fetch(url, { 
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" }})
+         
+        ref.then(() => {
+            alert("Booking deleted successfully")
+            sendRequest();
+    })
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
         <div id="pageComponent">
@@ -219,14 +307,65 @@ function ViewProperty() {
                         </div>
                     </div>
                 </div>
-
-
-
+ 
                 <div id="viewPropertyButtons">
                     {statusCheck()}
                 </div>
 
+                {property.status === "FOR SALE" && <><Button variant="primary" onClick={handleShow}>Add booking</Button>
+                <BookingsTable DeleteBooking={DeleteBooking} bookings={bookings.filter(booking => booking.propertyId === property.id)}/></>}
+
             </div>
+            <>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Property Booking</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+
+        {/* <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Buyers
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        {buyers.map(buyer => (<Dropdown.Item value={buyer.id}>{buyer.firstName} {buyer.surname}</Dropdown.Item>))}
+      </Dropdown.Menu>
+    </Dropdown>
+    
+    <Dropdown ref={slotRef} >
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          Time Slots
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+        {timeSlots.map(slot => (<Dropdown.Item value={slot.value}>{slot.text}</Dropdown.Item>))}
+      </Dropdown.Menu>
+    </Dropdown> */}
+
+    <select ref={buyerRef} className="filterDropdowns">
+        {buyers.map(buyer => (<option value={buyer.id}>{buyer.firstName} {buyer.surname}</option>))}
+    </select>
+
+    <select ref={slotRef} className="filterDropdowns">
+        {timeSlots.map(slot => (<option value={slot.value}>{slot.text}</option>))}
+     </select>
+
+    {/* <DatePicker ref={dateRef} defaultValue={new Date()} selected={selectedDate} onChange={dateTimeChangeHandler} /> */}
+
+    <input ref={dateRef} type="date" id="start" name="trip-start" min={new Date().getDate()} required/>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={saveChangeBookingHandler}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+           
         </div>
     );
 }

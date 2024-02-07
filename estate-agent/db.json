@@ -409,12 +409,6 @@
   ],
   "booking": [
     {
-      "buyerId": 1,
-      "propertyId": 2,
-      "time": "2023-02-28T08:00:00.038Z",
-      "id": 2
-    },
-    {
       "buyerId": 2,
       "propertyId": 3,
       "time": "2023-03-01T10:30:00.045Z",
@@ -497,6 +491,48 @@
       "propertyId": 14,
       "time": "2023-03-14T16:15:00.020Z",
       "id": 16
+    },
+    {
+      "time": "2024-02-29T09:00:00.000Z",
+      "buyerId": "6",
+      "propertyId": 1,
+      "id": 17
+    },
+    {
+      "time": "2024-02-30T09:00:00.000Z",
+      "buyerId": "6",
+      "propertyId": 2,
+      "id": 18
+    },
+    {
+      "time": "2024-02-29T10:00:00.000Z",
+      "buyerId": "6",
+      "propertyId": 1,
+      "id": 19
+    },
+    {
+      "time": "2024-02-29T10:00:00.000Z",
+      "buyerId": "5",
+      "propertyId": 3,
+      "id": 21
+    },
+    {
+      "time": "2024-01-25T09:00:00.000Z",
+      "buyerId": "4",
+      "propertyId": 4,
+      "id": 22
+    },
+    {
+      "time": "2024-01-25T09:00:00.000Z",
+      "buyerId": "1",
+      "propertyId": 5,
+      "id": 23
+    },
+    {
+      "time": "2024-01-25T09:00:00.000Z",
+      "buyerId": "1",
+      "propertyId": 6,
+      "id": 24
     }
   ]
 }
